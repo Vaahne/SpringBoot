@@ -1,0 +1,18 @@
+User Module
+----------------
+- name: Create a user
+  user:
+  	name: <userName>
+  	password: "{{ 'password'  | password_hash('sha512')  }}"
+  	state: present
+
+- name: Add an existing user to a group
+  user:
+  	name: <userName>
+  	groups: username
+  	append: yes
+
+ - name: Delete an existing user
+   user:
+   	 name: <username>
+   	 state: absent

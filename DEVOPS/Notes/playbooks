@@ -1,0 +1,51 @@
+playbooks
+--------------------
+A collection of plays called playbook
+one task is called a play
+play: A task you want to do in the remote machine
+	Example : create a file/install a software/remove a file/start a service/execute a command
+Old yml file(starting of the file ---) (ending of the file ...)
+new yml file(starting of the file ---)
+# comments line starts with #
+
+gather_facts: false  (gathers information of managed nodes , default value is true/yes . false/no )
+
+become: true (gives the sudo permissions)
+-----------------------
+ tasks:
+    - name: Create a file
+    	file:
+    		path: /home/ansible/file.txt
+    		state: touch
+    - name: Add Content
+    	blockinfile:
+    		path: /home/ansible/file.txt
+    		block: | 
+    			This is file content
+    			inside the file file.txt
+    - name : Install Software
+    	yum:
+    		name: maven
+    		state: present
+    	when: ansible_pkg_mgr == 'yum' or ansible_pkg_mgr == 'dnf'
+-------------------------------------
+blockinfile:
+	it is used to add some content to a file
+	it takes 2 things
+		1. path : file location
+		2. block : content of file (to add mutiple lines of data)
+------------------------------------------
+execution of .yml file in ansible
+
+-ansible-playbook 1stplaybook.yml
+
+to execute all the tasks step by step
+-ansibe-playbook 2ndplaybook.yml --step
+-------------------------------------------
+-name: create a file
+ host: webservers
+ gather_facts: false
+ tasks:
+ 	-name: create a file
+ 	 file: 
+ 	  path: /home/ansible/file.txt

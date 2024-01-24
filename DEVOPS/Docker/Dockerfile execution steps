@@ -1,0 +1,15 @@
+Dockerfile execution steps
+-------------------------------
+1. Create a /home/ec2-user/Dockerfile
+2. $docker build -f <imge-name> -t /home/ec2-user/Dockerfile
+	$docker build -f my-first-img -t /home/ec2-user/Dockerfile
+3. $docker run <image-name>
+	$docker run my-first-img
+
+
+to store in Docker hub
+--------------------------
+1. $docker login
+	provide credentials of Dockerhub
+2. $docker tag my-first-img vaahne/my-first-img
+3. $docker push vaahne/my-first-tag

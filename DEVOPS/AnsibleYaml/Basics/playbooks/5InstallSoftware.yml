@@ -1,0 +1,26 @@
+# Using yum,dnf,homebrew for insatlling Maven
+---
+- name: Installing Mavne
+  hosts: all
+  become: true
+  tasks:
+    - name: Update OS Cache for (Ubuntu)
+      apt:
+        update_cache: yes
+      when: ansible_pkg_mgr == 'apt'
+    - name: Install Maven for (Ubuntu)
+      apt:
+        name: maven
+        state: present
+      when: ansible_pkg_mgr == 'apt'
+    - name: Install Maven for (RedHat/CentOS/AmazonLinux)
+      yum:
+        name: maven
+        state: present
+      when: ansible_pkg_mgr == 'yum' or ansible_pkg_mgr == 'dnf'
+    - name: Execute maven version details
+      command: mvn --version
+      register: Maven_version_details
+    - name: Display Details of maven 
+      debug:
+        var: Maven_version_details.stdout_lines

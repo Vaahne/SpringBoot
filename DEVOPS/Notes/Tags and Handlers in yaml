@@ -1,0 +1,52 @@
+Tags and Handlers in yaml
+-----------------------------
+->Tags are used to execute a specific tast or 
+->to skip few tasks
+->it can be written while executing the playbook
+ 	--list-tags (list of all tags)
+ 	--tags
+ 	--skip-tags (to skip execution of tasks)
+
+Example:
+TagsExample.yml
+--- 
+- name: Tags 
+  hosts: all
+  become: true
+  tasks:
+  	name: task 1
+  	command: echo "welcome to tags1 - install"
+  	tags: 
+  		- install
+  		- common
+  	name: task 2
+  	command: echo "welcome to tags2 - copy "
+  	tags:
+  		- copy
+  		- common
+  	name: task 3
+  	command: echo "welcome to tags3 - install"
+  	tags: 
+  		- install
+  		- common
+  	name: task 4
+  	command: echo "welcome to tags4 - uninstall"
+  	tags:
+  		-uninstall
+  		-common	
+
+ -----------------------
+to execute all the install tags
+	ansible-playbook TagsExample.yml --tags "install"
+
+to skip copy tags
+	ansible-playbook TagsExample.yml --skip-tags "copy"
+
+to list all tags
+	ansible-playbook TagsExample.yml --list-tags
+
+
+
+
+
+

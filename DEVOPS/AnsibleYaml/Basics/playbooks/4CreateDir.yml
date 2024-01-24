@@ -1,0 +1,25 @@
+---
+- name: Create a directory
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: make a directory
+      file:
+        path: /home/ansible/testDir
+        state: directory
+    - name: rename directory
+      command: mv /home/ansible/testDir /home/ansible/testDirRename
+    - name: Create a file inside
+      file:
+        path: /home/ansible/testDirRename/myFileinDir
+        state: touch
+    - name: Add content to file
+      blockinfile:
+        path: /home/ansible/testDirRename/myFileinDir
+        block: |
+            A file inside renamed folder
+            Hello and welcome here
+    - name: Delete folder
+      file:
+        path: /home/ansible/testDirRename
+        state: absent

@@ -1,0 +1,37 @@
+Variables in yml
+---------------------------------------
+-> To hold data (name --> Data format)
+-> used at multiple places/easy to modify
+-> we can pass varibles to plybook while executing using --extra-vars="value"
+
+
+Example:  variables.yml
+#vars:
+#	my_software_name: maven
+
+- name: install maven
+  yum:
+  	name: "{{ my_software_name }} "
+  	state: present
+- name: Uninstall
+  yum:
+  	name: "{{ my_software_name }}  "
+  	state: absent
+------------------------------------
+(--extra-vars)
+command to execute the above file by passing the variables
+ansible-playbook variables.yml --extra-vars my_software_name="httpd"
+-------------------------
+create a folder group_vars under /etc/ansible
+and create following files in group_vars
+	- dbservers.yml
+	- webservers.yml 
+	- all.yml
+	- <ip_address>.yml
+we can pass variables from the above files to the respective servers 
+----------------------------------------
+order of preference
+ - command line variables ( --extra-vars )
+ - local varaibles (with in the file) inside the playbook
+ - from the particular ip_address.yml file (host variables)
+ - from the group_vars folder present inside /etc/ansible/group_vars

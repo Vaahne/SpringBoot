@@ -1,0 +1,25 @@
+File module
+-----------------
+- name: Creating a file
+  file:
+		path: ./.....
+		state: touch
+- name: Deleting a file or directory
+  file:
+		path: ./...
+		state: absent
+- name: Creating a directory
+  file:
+		path: ./..
+		state: directory
+- name: Changing file permissions
+  file: 
+		path: ./....
+		mode: "0742"
+- name: changing file owner and group
+  file: 
+		path: ./...
+		owner: <userName>
+		group: <groupName>
+- name: Moving / renaming file
+  command: mv ./oldFilePath ./newFilePath(or)NewName

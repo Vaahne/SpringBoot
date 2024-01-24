@@ -1,0 +1,60 @@
+Docker structure 
+--------------------------
+Registry :
+Docker daemon:
+	Listens to client request and manages Docker objects as Images,containers,networks and volumes. 
+	A Daemon can communicate with other daemon to manage docker services
+Docker Client:
+	It is a primary way that many docker users interact with Docker.
+	when we use commands such as docker run , client sends these commands to docker.
+	Docker commands uses Docker API. 
+	Docker client may communicate with more than 1 Docker Daemon
+Docker Registries
+	It stores Docker Images.
+	DOCKER HUB is a public registry that anyone can use.
+	Docker is configured to look for images on Docker Hub.
+	We can pull / push images to docker registry
+
+
+======================
+Container: Run a command 
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Create a instance DockerExample
+$sudo yum install docker
+$sudo systemctl start docker
+$sudo systemctl enable docker
+
+assign current user to docker group
+$sudo usermod -aG docker $USER
+			(or)
+$sudo usermod -aG docker ec2-user
+exit and restart
+-------------------------
+to view docker version
+	docker --version
+to view existing images
+	docker images
+to view containers or running containers
+	docker ps
+to view running and stopped containers
+	docker ps -a
+to pull images from docker (hello-world)
+	docker pull <image-name>
+	docker pull hello-world
+to create a container
+	docker run <image-name>
+	docker run hello-world
+to remove container (rm)
+	docker rm <container-id>
+to remove image(rmi)
+	docker rmi <image-id>
+	docker rmi hello-world
+to start/stop container
+	docker start/stop <container-id>
+
+Note: if we try to run an image which is not present in local machine, then Docker daemon run command will "pull first and then run next"
+
+to reset all dockers (not used realtime)
+ 	docker system prune -a
+

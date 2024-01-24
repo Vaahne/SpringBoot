@@ -1,0 +1,11 @@
+---
+- name: Sample Playbook
+  hosts: all
+  remote_user: ansible
+  become: true ## adds sudo for commands
+  gather_facts: false
+  tasks:
+    - name: Ping Mode
+      ping: 
+      remote_user: ansible
+ 

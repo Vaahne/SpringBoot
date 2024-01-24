@@ -1,0 +1,11 @@
+Vault in yml 
+----------------------------
+Converting yaml file into unreadble format . Protects data.
+
+-ansible-vault create sample.yml
+
+-ansible-vault encrypt sample.yml (changes to unreadble format)
+
+-ansible-vault decrypt sample.yml (changes back to readable format)
+
+-ansible-vault rekey sample.yml

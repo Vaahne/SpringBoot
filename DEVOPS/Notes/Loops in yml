@@ -1,0 +1,47 @@
+Loops in yml
+--------------------
+vars:
+	softwares:
+		-maven
+		-git
+		-tree
+		-httpd
+tasks:
+	- name: install software
+	  package:
+	  	name: "{{ item }}"
+	  	state: present
+	  loop: "{{ softwares }}"
+	- name: check version
+	  command: "{{ item }} --version"
+	  register: version_output
+	  with_items: "{{ softwares }}"
+	- name: display message
+	  debug:
+	  	vars: item.stdout
+	  with_items: "{{ version_output.results }}"
+---------------------------------------------------------------
+Boxed
+---
+- name:
+  hosts: all
+  become: true
+  tasks:
+  	name: install
+  	yum:
+  		name: ['zip' , 'git', 'tree']
+  		state: present
+---------------------------------------
+---
+- name:
+  hosts: all
+  become: true
+  tasks:
+  	name: install
+  	yum:
+  		name: "{{ item }}"
+  		state: present
+  	with_items:
+  		- zip
+  		- git
+  		- tree

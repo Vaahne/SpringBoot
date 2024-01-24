@@ -1,0 +1,26 @@
+Jenkins installation in linux
+---------------------------
+  sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+  sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+ sudo yum update
+  	yum install java -y  (for java installation)
+  	java --version (to check java version)
+ yum install jenkins -y (install jenkins)
+rpm -qa jenkins (to check jenkins version)
+
+systemctl daemon-reload
+
+systemctl enable jenkins (startup along with server , no need to start again with server startup )
+systemctl start jenkins
+systemctl stop jenkins
+systemctl restart jenkins (to restart jenkins service)
+--------------
+to know java to install 
+
+sudo yum whatprovides java
+sudo yum install java-11-amazon-corretto
+
+
+----------------
+to knwo jenkins password for the first time after jenkins is upmin 8080 port
+	sudo cat /var/lib/jenkins/secrets/initialAdminPassword

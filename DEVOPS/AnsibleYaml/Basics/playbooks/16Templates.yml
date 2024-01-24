@@ -1,0 +1,15 @@
+# Templates to copy file
+# need to create .j2 file in the master node
+---
+- name: copy files using template Module
+  hosts: all
+  become: true
+  vars:
+    user_name: ansible
+    version_name: 2.0
+    Auth_name: vaahne
+  tasks:
+    - name : using template
+      template:
+        src: ./http_test.conf.j2
+        dest: /etc/httpd/conf/httpd_test.conf

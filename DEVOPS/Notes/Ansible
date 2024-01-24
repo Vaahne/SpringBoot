@@ -1,0 +1,26 @@
+Ansible
+---------------------
+Ansible is used to install/remove softwares
+/copy/move directories
+
+Host Inventory : contains list of all Target/Host/Managed Nodes
+Ansible Playbooks : details of what to do and where to do
+Control Node (Linux) : Ansible 
+Modules : Predefined services..
+Plugins : used to connect to the Target Nodes
+
+--------------------------
+Connecting to 1 machine to another machine SSH (Secured Shell) with port 22 is used (TCP -Transmission Control Protocol)
+ssh-keygen -- used to create key pair(public and private keys)
+ssh-copy id
+ssh with port 22
+
+-------------------------------------
+Configuration
+ -	Manual way (execute one by one)
+ - Automated way
+ 	-BashScript (legacy)
+ 	-IaC(Infrastructure as Code)
+ 		YAML/JSON/DSL
+ 			-Cloud automation (Terraform) AWS cloud Formation
+ 			-System Configuration (Anisble) Chef/Puppet.. etc

@@ -1,0 +1,23 @@
+---
+- name: User Operations
+  hosts: webservers
+  gather_facts: false
+  become: true
+  tasks:
+    - name: create User
+      user:
+        name: user2
+        state: present
+    - name: Create a group 
+      group: 
+        name: group2
+        state: present
+    - name: assign the user to a group
+      user:
+        name: user2
+        group: group2
+        append: yes
+    - name: Delete existing user
+      user:
+        name: user2
+        state: absent

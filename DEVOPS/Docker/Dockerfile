@@ -1,0 +1,10 @@
+FROM ubuntu
+RUN echo "hi1"
+RUN echo "hi2"
+RUN echo "hi3"
+RUN echo "hi4"
+RUN echo "hi5"
+RUN echo "hi6"
+CMD echo "cmd1"
+RUN echo "hi7"
+CMD echo "cmd2"

@@ -1,0 +1,29 @@
+---
+  - name: Start and enable service
+    hosts: webservers
+    become: true
+    vars:
+      service_http: httpd
+    tasks:
+      - name: start a service
+        service:
+          name: "{{service_http}}"
+          state: started
+
+      - name: stop a service
+        service:
+          name: "{{service_http}}"
+          state: stopped
+
+      - name: enable a service
+        service:
+          name: "{{service_http}}"
+          state: started
+          enabled: true
+
+      - name: restart a service
+        service:
+          name: "{{service_http}}"
+          state : restarted
+      
+      

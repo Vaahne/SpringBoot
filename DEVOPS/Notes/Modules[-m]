@@ -1,0 +1,61 @@
+Modules[-m]
+------------------
+type the commands in control node and executes in the managed nodes
+ping - to check connection between control and Managed nodes
+shell- to execute any shell command
+service-started,stopped ,restarted ,reloaded
+copy - copy files
+file- create files/dir, change permissions, change owner or group
+yum/apt - install /uninstall / update software 
+[name,state=present/absent/latest]
+	present- install
+	absent- uninstall
+	latest- upgrade
+service: start ,stop,restart,enable etc
+-----------------------
+ansible <where to execute>	<what to execute>
+ansible [all/ungrouped/any groupname/anyip] -m <module-name> -a <arguments>
+
+-b: become (adding sudo to commands)
+
+--------------------------------------------
+to create a file in current directory of all nodes
+-ansible all -m shell -a 'echo "welcome to ansible" > ./data.txt'  
+		Here -m: Module , -a: arguments
+-ansible all -m shell -a date
+===============================================================
+to know list of all modules
+-ansible-doc -l
+	q to come out of it
+-ansible-doc copy
+	gives details of copy
+--------------------
+service sshd restart
+
+to execute the above in the other nodes from master
+
+-ansible all -b -m shell -a 'service sshd restart' 
+		 -b option for the root user access (to become a sudo user)
+
+to install maven in Node from master
+-ansible all -m yum -b -a 'name=maven state=present'
+to uninstall
+-ansible all -m yum -b -a 'name=maven state=absent'
+to upgrade
+-ansible all -m yum -b -a 'name=maven state=latest'
+
+	(or)
+
+ansible all -b -m shell -a 'yum install maven -y'
+
+to install git
+
+-ansible all -m yum -b -a 'name=git state=present'
+=================================================================
+systemctl start jenkins
+service
+install httpd
+-ansible all -b -m service -a 'name=httpd state=started'
+
+
+

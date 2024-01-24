@@ -1,0 +1,9 @@
+---
+- name: Boxed Array
+  hosts: all
+  become: true
+  tasks:
+    - name: install softwares
+      yum:
+        name: ['git', 'tree', 'httpd', 'zip']
+        state: present

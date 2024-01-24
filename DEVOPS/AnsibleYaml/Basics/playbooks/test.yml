@@ -1,0 +1,17 @@
+---
+  - name: Loops Example
+    hosts: all
+    become: true
+    vars:
+      softwares:
+        -git
+        -maven
+        -java
+        -httpd
+        -tree
+    tasks:
+      - name: Loops for installing softwares
+        package:
+          name: "{{ item }}"
+          state: present
+          Loops: "{{ softwares }}"

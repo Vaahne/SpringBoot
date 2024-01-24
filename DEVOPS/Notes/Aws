@@ -1,0 +1,21 @@
+Aws
+----------------------------
+search for ec2
+create instance
+Newkp (.pem file created pem(privacy enhanced mail))
+
+install Mobaxtrem
+---
+for connecting to linux from aws server
+	open command prompt
+	ssh -i Key1.pem ec2-user@<public-ip-address>
+details for ssh connection	
+	-- we need public ip address, pem file(which is downloaded during creation of instance)
+
+stop instance -- it just stops the server . here we can restart the machine ... 
+	public ip changes if we restart the server
+terminate instance -- it deletes the instance
+
+-----------------------------------------------------------------------------
+contact person:javabyraghu@gmail.com
+

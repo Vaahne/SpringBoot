@@ -1,0 +1,38 @@
+Docker in linux
+=========================================
+Virtualization:
+--------------
+	-It is a process of converting hardware resources to shared resource and distributing to multiple operating system (OS) to run . we install required software on top of it.
+  	- it is done using a software called Hypervisor(bridge between OS and VM(Virtual Machine) that underlying the hardware)
+
+(DOCKER IMAGE) My s/w = Appication [code] (.war /.jar ) + dependencies (JRE/Tomcat/MYSQL.. etc)
+
+Containersation:
+---------------
+	Creating virtually isolated instances along with required dependencies called containers
+	it is independent on OS and portable from one os to another
+	bridge b/w containers and underlying OS
+
+DOCKER:
+-------
+ It is a platform that provides Virtual Containers on which application can be deployed independent of underlying OS of server
+
+ Image :  it is a packed s/w . application + dependencies
+
+ Docker file : software details 
+ develpoer and devops manager creates docker file
+ Developer develops all the code . and developer creates a docker file.
+
+
+ Code ------------->Docker File -----------> Image (Application (code)+dependencies) ------>Container(App running (instance))
+ 												Packed software
+
+DockerHub : all the images are stored 												
+=============================================================================
+Virtualization: share h/w to multiple OS then install s/w and runs
+Containerization: install s/w, run application --> independent on OS
+Docker : Containersation platform
+Docker file: Set of instructions (app details, dependency details ) to create Image
+Docker Image : Docker understandable s/w( Dcokerfile --> build --> image)
+Docker Container: Run Image (1 time/ multiple times) --> Running instance is called Container
+Docker HUB: all the images are stored

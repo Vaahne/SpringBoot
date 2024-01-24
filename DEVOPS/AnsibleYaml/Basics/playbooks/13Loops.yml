@@ -1,0 +1,25 @@
+---
+- name: Loops Examples
+  hosts: all
+  become: true
+  vars:
+    software:
+      - tree
+      - git
+      - httpd
+  tasks:
+    - name: Install software
+      package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ software }}"
+    - name: software version
+      command: " {{ item }} --version "
+      register: version_output
+      ignore_errors: true
+      with_items: "{{ software }}"
+    - name: display versions
+      debug:
+        var: item.stdout
+      with_items: "{{ version_output.results }}"
+               

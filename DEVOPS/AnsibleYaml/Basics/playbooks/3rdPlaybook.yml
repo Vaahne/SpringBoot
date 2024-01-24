@@ -1,0 +1,15 @@
+---
+- name: Create File Permission
+  hosts: dbservers
+  gather_facts: false
+  tasks:
+    - name: Create a File with Permission (chmod)
+      file:
+        path: /home/ansible/test.txt
+        mode: "0741"
+    - name: Modify the user/group details (chown)
+      become: true
+      file:
+        path: /home/ansible/test.txt
+        owner: user1
+        group: group1

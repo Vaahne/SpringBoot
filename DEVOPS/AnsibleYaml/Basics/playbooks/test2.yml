@@ -1,0 +1,11 @@
+- name: Java
+  package:
+    name: {{ java_version }}
+    state: present
+  become: true
+- name: find version of java
+  command: java --version
+  register: java_version
+- name: Display Java version  
+  debug: 
+    var: java_version.stdout

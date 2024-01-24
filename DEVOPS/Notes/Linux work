@@ -1,0 +1,70 @@
+Linux work
+------------
+man
+ls
+cp
+mv
+mkdir
+cd
+touch
+cat , cat > ,cat >>
+more,less
+head,tail
+find
+sed
+	number the lines which are not blank
+		sed '/./=' f1 | sed '/./N ; s/\n//'
+/ ---- root folder/directory
+~ --- home directory of current user
+
+# -- Root user
+$ -- Normal user
+git commands
+----------------------------
+git clone <url>
+git add . (add the created files)
+git status (shows how many files are going to add or the changes)
+git commit -m "message to be shown in the repository" (meaningful message to commit which is readable)
+git push origin main (to push the changes into the git)
+git pull origin main  (to get the changes from the git )
+
+git checkout -b dev (to change to branch dev)
+
+(to avoid entering passwords again and again)
+	git config --global credential.helper.cache
+	git config --global user.name 'your user name' 
+	git config --global user.password 'your password'
+to clone
+	git clone https://github.com/Vaahne/LinuxRepo.git
+	git clone https://github.com/Vaahne/LinuxRepo.git -b sub_branch ( to clone the sub branch of a git repository)
+--------------------------------
+to check for cpu details
+	cat /proc/cpuinfo
+to check for memory details
+	cat /proc/meminfo
+
+to know the linux connected to
+ 	cat /etc/os-release
+ to know version
+ 	cat /proc/version
+ 	uname -a
+ 	uname -r (kernel version)
+
+jenkins installation (CICD-Continuous Integration and continuous Development)
+---------------------
+sudo wget <url>
+yum install jenkins -y
+Starting jenkins
+	systemctl status jenkins
+	systemctl start jenkins
+to stop jenkins
+	systemctl stop jenkins
+	systemctl enable jenkins (allows jenkins to be up even after restart of server)
+--------------------
+how to restart linux command ine
+	reboot
+	shutdown -r now (immediately)
+	shutdown -r 
+------------
+to check other server is up or not
+	ping <ip-address>

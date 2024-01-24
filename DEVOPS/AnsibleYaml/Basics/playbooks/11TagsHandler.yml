@@ -1,0 +1,27 @@
+---
+ - name: Tags and Handlers Example
+   hosts: all
+   become: true
+   tasks:
+     - name: Task1
+       command: echo "welcome to task1"
+       tags:
+        - install
+        - common
+       notify: task 3
+     - name: Task2
+       command: echo "welcome to task2"
+       tags:
+        - copy
+        - common
+   handlers: 
+     - name: task 3
+       command: echo "welcome to task3"
+       tags:
+        - install
+        - common
+     - name: Task4
+       command: echo "welcome to task4"
+       tags:
+        - uninstall
+        - common

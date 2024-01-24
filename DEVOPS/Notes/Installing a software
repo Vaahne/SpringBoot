@@ -1,0 +1,43 @@
+Installing a software or starting services
+--------------------------------------------------------------
+- name: Update apt cache (for Debian/Ubuntu)
+  apt:
+  	update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Install s/w (for Debian/Ubuntu)
+  apt:
+  	name: s/wName
+  	state: present
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Install s/wname (for Red Hat/CentOS)
+  package:  # we can use package or yum
+  	name: s/wName
+  	state: present
+  when: ansible_pkg_mgr == 'yum' or ansible_pkg_mgr == 'dnf'
+
+- name: Install s/wname (for MacOS)
+  homebrew:
+  	name: s/wName
+  	state: present
+  when: ansible_pkg_mgr == 'homebrew'
+  ------------------------------------------------
+  - name: install <any service>
+  	package:
+  		name: <any service>
+  		state: present
+
+  - name: start <any-serice>
+  	service:
+  		name: httpd
+  		state: started  / stopped / restarted
+
+  - name: to enable httpd service
+    service: 
+    	name: <any service>
+    	enabled: true /false [if set to true makes service enable on OS restart]
+----------------------------------------------------------------
+annsible_pkg_mgr == 'yum' (or) ansible_os_family == 'RedHat'
+annsible_pkg_mgr == 'apt' (or) ansible_os_family == 'Ubuntu'
+annsible_pkg_mgr == 'homebrew' (or) ansible_os_family == 'Mac'

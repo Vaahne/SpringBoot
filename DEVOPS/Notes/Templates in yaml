@@ -1,0 +1,46 @@
+Templates in yaml
+--------------------------------
+-templates is used to copy file which replaces variables with variable data 
+-file copy which contains static & dynamic data and replaces the variable substitution 
+- it uses jinja2 templating engine ( .j2)
+
+--- we generally use templates for configuration files
+
+it takes 2 parameters
+  src
+  dest
+
+----------------------
+Example:
+ create a file httpd_test.conf.j2 in master node
+-
+Welcome to {{ user_name }}
+for this version {{ version_name }}
+Auther by {{ Auth_name }}
+
+template.yml
+---
+- name: template example
+  hosts: all
+  become: true
+  vars:
+  	user_name: ansible
+  	version_name: 2.0
+  	Auth_name: vaahne
+  tasks:
+  	- name: template examples
+  	  template: 
+  	  	src: ./httpd_test.conf.j2
+  	  	dest: /etc/httpd/conf/httpd_test.conf
+
+Execute
+- ansible-playbook template.yml
+
+=== post execution
+in the managed node under /etc/httpd/conf/
+ httpd_test.conf file will be created
+in Managed node
+ $cat /etc/httpd/conf/httpd_test.conf
+ Welcome to ansible
+ for this version 2.0
+ Auther by vaahne

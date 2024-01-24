@@ -1,0 +1,18 @@
+---
+- name: Install Httpd , copy file , start service
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install Httpd
+      package: 
+        name: httpd
+        state: present
+    - name: Copy files from Control Node to managed nodes
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+      
+    - name: Starting a service  
+      service:
+        name: httpd
+        state: started

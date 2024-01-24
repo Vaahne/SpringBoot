@@ -1,0 +1,22 @@
+---
+- name: Working on File Operations
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Create an empty File
+      file:
+        path: /home/ansible/data.txt
+        state: touch
+    - name: Add Content to file
+      blockinfile: 
+        path: /home/ansible/data.txt
+        block: |
+          This is 1st line
+          This is 2nd line
+          This is 3rd line
+    - name: Register content of file 
+      shell: cat /home/ansible/data.txt
+      register: My_Data
+    - name: Read data from register and Display
+      debug:
+        var: My_Data.stdout

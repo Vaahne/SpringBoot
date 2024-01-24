@@ -1,0 +1,25 @@
+---
+  - name: Install git if not present
+    hosts: 
+      - webservers 
+      - dbservers
+    become: true #suder permission
+    tasks:
+      - name: check git present or not
+        command: git --version
+        register: gitVersionOutput
+        ignore_errors: true #ignores errors if git doesn't exist
+      
+      - name: Display output of git version
+        debug: 
+          var: gitVersionOutput.stdout
+      - name: Install git
+        package: # it is choose internally yum/apt/homebrew depending on OS 
+          name: git
+          state: present
+        when: gitVersionOutput != 0
+
+      - name: clone repository
+        git:
+          repo: https://github.com/Vaahne/LinuxRepo.git
+          dest: ~/maven-LinuxRepo
